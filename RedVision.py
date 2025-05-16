@@ -10,6 +10,10 @@ import sqlite3
 # EDAD: 20 years old
 
 variable_util = 1
+
+if 1 == variable_util:
+    print("Variable util es 1")
+
 def ventana1():
     global v
 
