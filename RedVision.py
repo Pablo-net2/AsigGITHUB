@@ -9,11 +9,17 @@ import sqlite3
 # AUTOR: PABLO LARA
 # EDAD: 20 years old
 
+
+
 variable_util = 1
 
 if 1 == variable_util:
     print("Variable util es 1")
+elif 2 == variable_util:
+    print("Alguien interrumpio el codigo")
 
+
+    
 def ventana1():
     global v
 
