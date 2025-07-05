@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>
+        {% block titulo %}
+        {% endblock titulo %}
+    </title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='hoja_base/base.css') }}">
+    <script src="{{ url_for('static', filename='jquery/jquery-3.7.1.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/bootstrap.bundle.min.js') }}"></script>
+    <style>
+        .table-responsive-container {
+            max-height: 300px;
+            overflow-y: auto;
+        }
+    </style>
+    {% block css %}
+    {% endblock css %}
+</head>
+<body>
+
+
+    {% include 'base/navbar.html' %}
+
+    <div class="container">
+
+        
+        <div class="row text-center"id="ejecutando-programa">
+            <h6>Pausa de 10 seg</h6>
+            <div class="spinner-grow text-primary spinner-ejecutando" role="status">
+                <span class="visually-hidden"></span>
+            </div>
+        </div>
+        
+        
+        {% block contenido %}
+        {% endblock contenido %}
+        
+        <!--
+            <div class="row" id="ping-results"  >
+            </div>
+        -->
+
+    </div>
+
+
+    {% include 'base/footer.html' %}
+
+    <script src="{{ url_for('static', filename='hoja_base/base.js') }}"></script>    
+</body>
+</html>

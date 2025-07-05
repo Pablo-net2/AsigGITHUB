@@ -1,0 +1,32 @@
+<nav class="navbar navbar-expand-lg colorNav">
+  <div class="container-fluid">
+    <a class="navbar-brand letraBase" href="{{ url_for('servicios') }}">
+      PL-RED
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ">
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle letraBase" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Páginas
+          </a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="{{ url_for('servicios') }}" target="_blank">Servicios</a></li>
+            <li><hr class="dropdown-divider"></li>
+          </ul>
+        </li>
+      </ul>
+      <h4 class="mx-auto text-center letraBase">
+        {{ pagina }}
+      </h4>
+
+
+      <div class="d-flex" role="search">
+        <a class="btn btn-dark me-4" id="btnAgregar" data-bs-toggle="modal" data-bs-target="#exampleModal">Agregar</a>
+        <a class="btn btn-dark" id="btnEditar" data-bs-toggle="modal" data-bs-target="#editarModal">Editar / Eliminar</a>
+      </div>
+    </div>
+  </div>
+</nav>

@@ -1,0 +1,105 @@
+<div class="modal fade" id="editarModal" tabindex="-1" aria-labelledby="editarModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content" >
+            <div class="modal-header colorCabezalModal">
+            <h1 class="modal-title letraBase fs-5" id="editarModalLabel">
+                EDITAR PING
+            </h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+
+                {% if msg %}
+                    <div class="alert alert-info">{{ msg }}</div>
+                {% endif %}
+                <form action="{{ url_for('edita_local') }}" method="POST" id="editaLocal">
+                    <div class="row">
+
+                        <div class="col-sm-12 col-ms-12 col-lg-4 mb-3">
+                            <label for="editId" class="form-label">Id:</label>
+                            <input type="text" class="form-control" id="editId" name="editId" readonly required>
+                        </div>
+                        <div class="col-sm-12 col-ms-12 col-lg-4 mb-3">
+                            <label for="editName" class="form-label">Nombre:</label>
+                            <input type="text" class="form-control" id="editName" name="editName" required>
+                        </div>
+                        <div class="col-sm-12 col-ms-12 col-lg-4 mb-3">
+                            <label for="editDireccion" class="form-label">Direccion IP:</label>
+                            <input type="text" class="form-control" id="editDireccion" name="editDireccion" required>
+                        </div>
+                        <div class="col-sm-12 col-ms-12 col-lg-6 mb-3">
+                            <label for="editOptions" class="form-label">Área:</label>
+                            <select class="form-select" id="editOptions" name="editOptions" required>
+                                <option value="Informatica">Informática</option>
+                            </select>
+                        </div>
+                        <div class="col-sm-12 col-ms-12 col-lg-6 mb-3">
+                            <label for="editOptions_paginas" class="form-label">Página:</label>
+                            <select class="form-select" id="editOptions_paginas" name="editOptions_paginas" required>
+                                <option value="Servicios">Servicios</option>
+                            </select>
+                        </div>
+                    </div>
+                
+                    <div class="modal-footer justify-content-between">
+                        <button type="button"  class="btn btn-secondary" data-bs-dismiss="modal">
+                            Cerrar
+                        </button>
+                        <button type="submit" class="btn btn-primary" id="btnCrear">
+                            Guardar
+                        </button>
+                    </div>
+                </form>
+                <hr>
+
+
+                <div class="row justify-content-center">
+                    <div class="col-sm-12 col-md-6 col-lg-6 col-xl-6 mb-3">
+                        <form  role="search" method="POST" id="search">
+                            <input class="text-center form-control me-2" type="search" placeholder="Filtra los datos..." aria-label="Search" name="buscador" id="buscador">
+                        </form>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="table-responsive-container">
+                        <table class=" table table-striped table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Nombre</th>
+                                    <th>Dirección</th>
+                                    <th>Área</th>
+                                    <th>Página</th>
+                                    <th>Opción</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for id, item in editar_locales.items() %}
+                                <tr class="pingsDatos">
+                                    <td>{{ id }}</td>
+                                    <td>{{ item.nombre }}</td>
+                                    <td>{{ item.ip }}</td>
+                                    <td>{{ item.ubicacion }}</td>
+                                    <td>{{ item.pagina }}</td>
+                                    <td>
+                                        <a class="btn btn-success" id="btnEditar{{ id }}" data-id="{{ id }}" data-nombre="{{ item.nombre }}" data-ip="{{ item.ip }}" data-ubicacion="{{ item.ubicacion }}" data-pagina="{{ item.pagina }}">
+                                            Edit
+                                        </a>
+                                        <a href="{{ url_for('elimina_local', id=id) }}" class="btn btn-danger" id="btnEliminar{{ id }}" data-delite-id ="{{ id }}">
+                                            Elim
+                                        </a>
+                                    </td>
+                                </tr>
+                                {% endfor  %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+
+
+            </div>
+        </div>
+    </div>
+</div>
