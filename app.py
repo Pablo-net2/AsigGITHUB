@@ -29,15 +29,25 @@ def trae_data_locales():
     con.close()
     return dic
 
+def trae_data_area():
+    con = sqlite3.connect('setting.db')
+    c = con.cursor()
+    c.execute('Select * from pl_areas')
+    dic = {fila[0]: {'nombre':fila[1]} for fila in c.fetchall()}
+    con.close()
+    return dic
+
 
 @app.route('/')
 def servicios():
     segundos = 10
     editar_locales = trae_data_locales()
+    editar_areas = trae_data_area()
     contexto = {
         'espacio_tiempo': segundos * 1000,
         'segundo': segundos,
         'editar_locales': editar_locales,
+        'editar_areas':editar_areas,
         'pagina': 'Servicios'
     }
     return render_template('servicios.html', **contexto)
@@ -103,6 +113,7 @@ def edita_local():
             conne.commit()
             conne.close()
             return redirect('/')
+            
         
 @app.route('/elimina_local', methods=['GET'])
 def elimina_local():
@@ -123,12 +134,12 @@ def elimina_local():
 @app.route('/nuevo_local',methods=['POST'])
 def nuevo_local():
     if request.method == 'POST':
+        msg =  []
         try:
             nombre = request.form ['name']
             direcc = request.form ['direccion']
             ar = request.form['options']
             pag = request.form['options_paginas']
-            msg =  []
             conne = sqlite3.connect('setting.db')
             curs = conne.cursor()
             curs.execute(f"INSERT INTO PL_CONNECTION (nombre, ip, area, pagina) VALUES(?,?,?,?)", (nombre, direcc, ar, pag))
@@ -140,6 +151,48 @@ def nuevo_local():
             conne.close()
 
             return redirect('/')
+
+
+
+
+@app.route('/elimina_area', methods=['GET'])
+def elimina_area():
+    if request.method == 'GET':
+        try:
+            eliminar = request.args.get('id')
+            conne = sqlite3.connect('setting.db')
+            curs = conne.cursor()
+            curs.execute(f'DELETE FROM pl_areas WHERE id= {eliminar}')
+            
+        except Exception as e:
+            print(e)
+        finally:
+            conne.commit()
+            conne.close()
+            return redirect('/')
+        
+
+
+@app.route('/nueva_area',methods=['POST'])
+def nueva_area():
+    if request.method == 'POST':
+        conne = sqlite3.connect('setting.db')
+        msg =  []
+        try:
+            nombre = request.form ['nameArea']
+            curs = conne.cursor()
+            curs.execute("INSERT INTO pl_areas (nombre) VALUES (?)", (nombre,))
+        except Exception as e:
+            print(e)
+            msg.append(e)
+
+        finally:
+
+            conne.commit()
+            conne.close()
+
+            return redirect('/')
+
 
 
 

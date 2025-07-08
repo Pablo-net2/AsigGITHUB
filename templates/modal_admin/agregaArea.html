@@ -12,17 +12,17 @@
                 {% if msg %}
                     <div class="alert alert-info">{{ msg }}</div>
                 {% endif %}
-                <form action="{{ url_for('nuevo_local') }}" method="POST" id="nuevoLocal">
+                <form action="{{ url_for('nueva_area') }}" method="POST" id="nuevaArea">
                     <div class="mb-3">
-                        <label for="name" class="form-label">Nombre:</label>
-                        <input type="text" class="form-control" id="name" name="name" required>
+                        <label for="nameArea" class="form-label">Nombre:</label>
+                        <input type="text" class="form-control" id="nameArea" name="nameArea" required>
                     </div>
                                     
                     <div class="modal-footer justify-content-between">
                         <button type="button"  class="btn btn-secondary" data-bs-dismiss="modal">
                             Cerrar
                         </button>
-                        <button type="button" class="btn btn-primary" id="btnCrear">
+                        <button type="submit" class="btn btn-primary" id="btnCrearArea">
                             Crear
                         </button>
                     </div>

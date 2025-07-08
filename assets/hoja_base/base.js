@@ -149,6 +149,28 @@ resultsHtml = `
 `
 
 
+document.getElementById('btnCrearArea').addEventListener('click', function(event) {
+    var form = document.getElementById('nuevaArea')
+    var inputNombre = document.getElementById('nameArea').value;
+    if (inputNombre.length != 0){
+        alert('Área registrada correctamente!!!')
+        form.submit();
+    }else{
+        alert('"Nombre" no valido.')
+    }   
+})
+
+resultsHtml = `
+`
+
+
+
+
+
+
+
+
+
 const editButtons = document.querySelectorAll('a[id^="btnEditar"]');
 editButtons.forEach(link => {
     link.addEventListener('click', function(event) {
