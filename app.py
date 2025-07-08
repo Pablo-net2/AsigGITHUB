@@ -155,6 +155,33 @@ def nuevo_local():
 
 
 
+
+
+
+
+
+
+
+
+
+
+@app.route('/edita_area', methods=['POST'])
+def edita_area():
+    if request.method == 'POST':
+        try:
+            editar = request.form.get('editIdArea')
+            nombre = request.form.get('editNameArea')
+            conne = sqlite3.connect('setting.db')
+            curs = conne.cursor()
+            curs.execute(f"UPDATE pl_areas SET nombre='{nombre}' WHERE id= '{editar}'")
+        finally:
+            conne.commit()
+            conne.close()
+            return redirect('/')
+        
+
+        
+
 @app.route('/elimina_area', methods=['GET'])
 def elimina_area():
     if request.method == 'GET':

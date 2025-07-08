@@ -142,34 +142,8 @@ document.getElementById('btnCrear').addEventListener('click', function(event) {
     
 })
 
-
-
-
 resultsHtml = `
 `
-
-
-document.getElementById('btnCrearArea').addEventListener('click', function(event) {
-    var form = document.getElementById('nuevaArea')
-    var inputNombre = document.getElementById('nameArea').value;
-    if (inputNombre.length != 0){
-        alert('Área registrada correctamente!!!')
-        form.submit();
-    }else{
-        alert('"Nombre" no valido.')
-    }   
-})
-
-resultsHtml = `
-`
-
-
-
-
-
-
-
-
 
 const editButtons = document.querySelectorAll('a[id^="btnEditar"]');
 editButtons.forEach(link => {
@@ -187,11 +161,6 @@ editButtons.forEach(link => {
         document.getElementById('editOptions_paginas').value = pagina;
     });
 });
-
-
-
-
-
 
 
 
@@ -228,3 +197,82 @@ document.addEventListener("DOMContentLoaded", function() {
         event.preventDefault();
     });
 });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+document.getElementById('btnCrearArea').addEventListener('click', function(event) {
+    var form = document.getElementById('nuevaArea')
+    var inputNombre = document.getElementById('nameArea').value;
+    if (inputNombre.length != 0){
+        alert('Área registrada correctamente!!!')
+        form.submit();
+    }else{
+        alert('"Nombre" no valido.')
+    }   
+})
+
+resultsHtml = `
+`
+
+const editArea = document.querySelectorAll('a[id^="btnEditarArea"]');
+editArea.forEach(link => {
+    link.addEventListener('click', function(event) {
+        const id = this.getAttribute('data-id');
+        const nombre = this.getAttribute('data-nombre');
+
+        document.getElementById('editIdArea').value = id;
+        document.getElementById('editNameArea').value = nombre;
+    });
+});
+
+
+
+
+
+document.getElementById("buscarArea").addEventListener("input", e => {
+    const quitarTildes = (texto) => {
+        return texto.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+    };
+
+    const textoSinTildes = quitarTildes(e.target.value);
+
+    if (e.target.value === "" && e.inputType === "deleteContentBackward") {
+        document.querySelectorAll(".areaDatos").forEach(anexo => {
+            anexo.classList.remove("filtroEditar");
+        });
+        return;
+    }
+
+    document.querySelectorAll(".areaDatos").forEach(anexo => {
+        const textoAnexo = quitarTildes(anexo.textContent.toLowerCase());
+        const textoBuscado = textoSinTildes.toLowerCase();
+
+        textoAnexo.includes(textoBuscado)
+            ? anexo.classList.remove("filtroEditar")
+            : anexo.classList.add("filtroEditar");
+    });
+});
+
+
+document.addEventListener("DOMContentLoaded", function() {
+    const form = document.getElementById("buscarAreaForm");
+
+    form.addEventListener("submit", function(event) {
+        // Previene el envío del formulario
+        event.preventDefault();
+    });
+});
+

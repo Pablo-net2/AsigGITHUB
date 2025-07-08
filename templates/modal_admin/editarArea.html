@@ -12,28 +12,24 @@
                 {% if msg %}
                     <div class="alert alert-info">{{ msg }}</div>
                 {% endif %}
-                <form action="{{ url_for('edita_local') }}" method="POST" id="editaLocal">
+                <form action="{{ url_for('edita_area') }}" method="POST" id="editaArea">
                     <div class="row">
 
                         <div class="col-sm-12 col-ms-12 col-lg-4 mb-3">
-                            <label for="editId" class="form-label">Id:</label>
-                            <input type="text" class="form-control" id="editId" name="editId" readonly required>
+                            <label for="editIdArea" class="form-label">Id:</label>
+                            <input type="text" class="form-control" id="editIdArea" name="editIdArea" readonly required>
                         </div>
                         <div class="col-sm-12 col-ms-12 col-lg-4 mb-3">
-                            <label for="editName" class="form-label">Nombre:</label>
-                            <input type="text" class="form-control" id="editName" name="editName" required>
-                        </div>
-                        <div class="col-sm-12 col-ms-12 col-lg-4 mb-3">
-                            <label for="editDireccion" class="form-label">Direccion IP:</label>
-                            <input type="text" class="form-control" id="editDireccion" name="editDireccion" required>
-                        </div>                        
+                            <label for="editNameArea" class="form-label">Nombre:</label>
+                            <input type="text" class="form-control" id="editNameArea" name="editNameArea" required>
+                        </div>                    
                     </div>
                 
                     <div class="modal-footer justify-content-between">
                         <button type="button"  class="btn btn-secondary" data-bs-dismiss="modal">
                             Cerrar
                         </button>
-                        <button type="submit" class="btn btn-primary" id="btnEditar">
+                        <button type="submit" class="btn btn-primary" id="btnEditarArea">
                             Guardar
                         </button>
                     </div>
@@ -43,8 +39,8 @@
 
                 <div class="row justify-content-center">
                     <div class="col-sm-12 col-md-6 col-lg-6 col-xl-6 mb-3">
-                        <form  role="search" method="POST" id="search">
-                            <input class="text-center form-control me-2" type="search" placeholder="Filtra los datos..." aria-label="Search" name="buscador" id="buscador">
+                        <form  role="search" method="POST" id="buscarAreaForm">
+                            <input class="text-center form-control me-2" type="search" placeholder="Filtra los datos..." aria-label="Search" name="buscarArea" id="buscarArea">
                         </form>
                     </div>
                 </div>
@@ -61,11 +57,11 @@
                             </thead>
                             <tbody>
                                 {% for id, item in editar_areas.items() %}
-                                <tr class="pingsDatos">
+                                <tr class="areaDatos">
                                     <td>{{ id }}</td>
                                     <td>{{ item.nombre }}</td>
                                     <td>
-                                        <a class="btn btn-success" id="btnEditar{{ id }}" data-id="{{ id }}" data-nombre="{{ item.nombre }}">
+                                        <a class="btn btn-success" id="btnEditarArea{{ id }}" data-id="{{ id }}" data-nombre="{{ item.nombre }}">
                                             Edit
                                         </a>
                                         <a href="{{ url_for('elimina_area', id=id) }}" class="btn btn-danger" id="btnEliminar{{ id }}" data-delite-id ="{{ id }}">
