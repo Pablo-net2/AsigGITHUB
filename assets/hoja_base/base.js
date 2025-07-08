@@ -63,10 +63,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Condicional para determinar cuál página está activa
     if (currentPage === '/') {
-        fetchPingResults('/pag_puntoDeVenta', 'ping-results-ventas', 'intervalVentas');
-    } else if (currentPage === '/dvr') {
-        fetchPingResults('/pag_dvr', 'ping-results-dvr', 'intervalDvr');
-    } else if (currentPage === '/servicios') {
         fetchPingResults('/pag_servicios', 'ping-results-servicios', 'intervalServicios');
     }
 });

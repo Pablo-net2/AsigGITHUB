@@ -24,7 +24,9 @@
                     <div class="mb-3">
                         <label for="options" class="form-label">Área:</label>
                         <select class="form-select" id="options" name="options" required>
-                            <option value="Informatica">Informática</option>
+                                {% for id, item in editar_areas.items() %}
+                                    <option value="{{ item.nombre }}">{{ item.nombre }}</option>
+                                {% endfor %}
                         </select>
                     </div>
                     <div class="mb-3">

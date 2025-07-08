@@ -82,7 +82,6 @@ def realiza_pings(nombre_dato):
             'local':nombre_local,
             'ping_count': len(pings),
             'espacio_tiempo': 10 * 1000,
-
         }
 
     return results

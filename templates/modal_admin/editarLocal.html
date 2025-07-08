@@ -30,7 +30,9 @@
                         <div class="col-sm-12 col-ms-12 col-lg-6 mb-3">
                             <label for="editOptions" class="form-label">Área:</label>
                             <select class="form-select" id="editOptions" name="editOptions" required>
-                                <option value="Informatica">Informática</option>
+                                {% for id, item in editar_areas.items() %}
+                                    <option value="{{ item.nombre }}">{{ item.nombre }}</option>
+                                {% endfor %}
                             </select>
                         </div>
                         <div class="col-sm-12 col-ms-12 col-lg-6 mb-3">
